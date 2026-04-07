@@ -28,7 +28,7 @@ jobs:
 
       - name: Download CI Core
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           gh release download ci-core-latest -p "kokuban_ci_core" --clobber
           chmod +x kokuban_ci_core
@@ -66,7 +66,7 @@ jobs:
       - name: Execute Update
         run: |
           ./kokuban_ci_core update \
-            --token "${{ secrets.GH_TOKEN }}" \
+            --token "${{ github.token }}" \
             --project "${{ inputs.project }}" \
             --variant "${{ inputs.branch }}" \
             --commit-id "${{ env.COMMIT_ID }}"
